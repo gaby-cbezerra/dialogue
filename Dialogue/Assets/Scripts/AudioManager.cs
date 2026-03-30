@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
       {
          Instance = this;
          DontDestroyOnLoad(gameObject);
+         systemSource = gameObject.GetComponent<AudioSource>();
+         activeSources = new List<AudioSource>();
       }
       else
       {
