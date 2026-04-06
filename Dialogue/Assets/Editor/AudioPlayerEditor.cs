@@ -19,41 +19,81 @@ public class AudioPlayerEditor : Editor
         {
             // Call PlaySelected. If in edit-mode, this will use the local AudioSource fallback.
             player.PlaySelected();
-            // Mark scene dirty when playing in edit mode? Usually not needed for temporary playback.
         }
 
         if (GUILayout.Button("Stop"))
         {
-            player.Stop();
+            // If running, prefer AudioManager; otherwise fallback to player
+            if (EditorApplication.isPlaying && AudioManager.Instance != null)
+                AudioManager.Instance.StopSound();
+            else
+                player.Stop();
         }
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Pause"))
         {
-            player.Pause();
+            if (EditorApplication.isPlaying && AudioManager.Instance != null)
+                AudioManager.Instance.PauseSound();
+            else
+                player.Pause();
         }
         if (GUILayout.Button("Resume"))
         {
-            player.Resume();
+            if (EditorApplication.isPlaying && AudioManager.Instance != null)
+                AudioManager.Instance.ResumeSound();
+            else
+                player.Resume();
         }
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Play via AudioManager (runtime only)", EditorStyles.boldLabel);
-        player.selectedIndex = EditorGUILayout.IntField("Selected Index", player.selectedIndex);
+        player.selectedIndex = EditorGUILayout.IntField("Clip Index", player.selectedIndex);
+        player.managerCollectionIndex = EditorGUILayout.IntField("Manager Collection Index", player.managerCollectionIndex);
 
-        if (GUILayout.Button("Set Index and Play (Runtime)"))
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("Play via AudioManager"))
         {
-            // If the editor isn't in play mode, try to still play using local source; otherwise use AudioManager singleton
-            if (EditorApplication.isPlaying)
+            if (EditorApplication.isPlaying && AudioManager.Instance != null)
             {
-                player.SetIndexAndPlay(player.selectedIndex, true);
+                AudioManager.Instance.PlayFromCollection(player.managerCollectionIndex, player.selectedIndex);
             }
             else
             {
-                // In edit mode, set index and play using local source
+                // fallback to local play
                 player.SetIndexAndPlay(player.selectedIndex, true);
+            }
+        }
+
+        if (GUILayout.Button("Set Index and Play (Runtime)"))
+        {
+            if (EditorApplication.isPlaying && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayFromCollection(player.managerCollectionIndex, player.selectedIndex);
+            }
+            else
+            {
+                player.SetIndexAndPlay(player.selectedIndex, true);
+            }
+        }
+        EditorGUILayout.EndHorizontal();
+
+        // Additional helper: let user type an arbitrary clip index and play via AudioManager singleton directly
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Quick Play (via AudioManager singleton)", EditorStyles.boldLabel);
+        int quickIndex = EditorGUILayout.IntField("Clip Index to Play", player.selectedIndex);
+        int quickCollection = EditorGUILayout.IntField("Collection Index", player.managerCollectionIndex);
+        if (GUILayout.Button("Play Collection/Clip via Singleton (Play Mode only)"))
+        {
+            if (EditorApplication.isPlaying && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayFromCollection(quickCollection, quickIndex);
+            }
+            else
+            {
+                Debug.LogWarning("AudioPlayerEditor: Play via singleton is only available in Play Mode and requires an AudioManager instance.");
             }
         }
 

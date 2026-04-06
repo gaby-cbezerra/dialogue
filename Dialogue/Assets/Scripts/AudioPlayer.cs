@@ -10,6 +10,14 @@ public class AudioPlayer : MonoBehaviour
     [Tooltip("Index of the clip inside the selected AudioCollection to play via AudioManager at runtime.")]
     public int selectedIndex = 0;
 
+    // When true, play using AudioManager.audioCollections at runtime by specifying a collection index.
+    [Tooltip("When true, use AudioManager.audioCollections[managerCollectionIndex] as the source when in play mode.")]
+    public bool useManagerCollections = true;
+
+    // Index into AudioManager.audioCollections to choose which collection to play from when using the manager.
+    [Tooltip("Index of the AudioCollection inside the AudioManager.audioCollections list to use when playing in runtime.")]
+    public int managerCollectionIndex = 0;
+
     // Local AudioSource used as a fallback when AudioManager is not available or when in edit-time previews
     private AudioSource localSource;
 
@@ -23,14 +31,20 @@ public class AudioPlayer : MonoBehaviour
     public void PlaySelected()
     {
         var clip = GetSelectedClip();
-        if (clip == null)
+        if (clip == null && !(Application.isPlaying && AudioManager.Instance != null && useManagerCollections))
         {
             Debug.LogWarning("AudioPlayer: No clip available at selected index.");
             return;
         }
 
-        if (Application.isPlaying && AudioManager.Instance != null)
+        if (Application.isPlaying && AudioManager.Instance != null && useManagerCollections)
         {
+            // Use AudioManager's collections by index (safe even if indices are out of range — AudioManager will warn)
+            AudioManager.Instance.PlayFromCollection(managerCollectionIndex, selectedIndex);
+        }
+        else if (Application.isPlaying && AudioManager.Instance != null)
+        {
+            // AudioManager exists but not using its collections: play the local clip through the manager
             AudioManager.Instance.PlaySound(clip);
         }
         else
@@ -86,7 +100,15 @@ public class AudioPlayer : MonoBehaviour
         selectedIndex = index;
         if (playImmediately)
         {
-            PlaySelected();
+            // If using AudioManager collections in play mode, directly call the manager to play the requested collection/index
+            if (Application.isPlaying && AudioManager.Instance != null && useManagerCollections)
+            {
+                AudioManager.Instance.PlayFromCollection(managerCollectionIndex, selectedIndex);
+            }
+            else
+            {
+                PlaySelected();
+            }
         }
     }
 

@@ -561,6 +561,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioPlayer
   myAudioCollection: {fileID: 445528102}
   selectedIndex: 0
+  useManagerCollections: 1
+  managerCollectionIndex: 0
 --- !u!114 &445528102
 MonoBehaviour:
   m_ObjectHideFlags: 0
