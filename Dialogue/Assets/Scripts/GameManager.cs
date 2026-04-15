@@ -55,9 +55,18 @@ public class GameManager : MonoBehaviour
 
         _instance = this;
         DontDestroyOnLoad(gameObject);
+        gameObject.SetActive(true);
 
         // Start in Initializing state
         CurrentState = GameState.Initializing;
+    }
+    
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name != "_Boot")
+            return;
+
+        RequestLoadSceneByName("Splash");
     }
 
     private void OnEnable()
@@ -75,7 +84,20 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        RelocatePlayerInputInstances();
+        switch (scene.name)
+        {
+            case "_Boot":
+                ChangeState(GameState.Initializing);
+                break;
+
+            case "MainMenu":
+                ChangeState(GameState.MainMenu);
+                break;
+
+            case "SampleScene":
+                ChangeState(GameState.Gameplay);
+                break;
+        }
     }
 
     /// <summary>
@@ -123,21 +145,19 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ChangeState(GameState newState)
     {
-        if (newState == CurrentState) return;
         var old = CurrentState;
+
+        Debug.Log($"Tentando mudar de {old} para {newState}");
+
+        if (newState == CurrentState)
+            return;
+
+        Debug.Log($"GameManager: Estado mudando de {old} para {newState}");
+
         OnExitState(old);
         CurrentState = newState;
         OnEnterState(newState);
-        try
-        {
-            OnStateChanged?.Invoke(old, newState);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"GameManager: Exception in OnStateChanged handlers: {ex}");
-        }
     }
-
     private void OnExitState(GameState _)
     {
         // Add state exit logic here if needed
@@ -170,6 +190,14 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(LoadSceneCoroutine(sceneName, mode, onComplete));
         return true;
+    }
+    public void LoadSampleScene()
+    {
+        // RequestLoadSceneByName("SampleScene");
+        
+        ChangeState(GameState.Gameplay);
+        
+        SceneManager.LoadScene(3);
     }
 
     /// <summary>
