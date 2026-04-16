@@ -1,12 +1,14 @@
-using System.Collections;
 using UnityEngine;
 
 public class SplashController : MonoBehaviour
 {
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return new WaitForSeconds(2f);
+        Invoke("GoToMenu", 2f);
+    }
 
-        GameManager.Instance.RequestLoadSceneByName("MainMenu");
+    void GoToMenu()
+    {
+        GameManager.Instance.GoToMenu();
     }
 }
