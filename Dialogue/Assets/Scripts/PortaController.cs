@@ -1,29 +1,38 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PortaController : MonoBehaviour
+namespace Core
 {
-
-    public Animator anim;
-    private bool isOpen;
-
-    private void Start()
+    public class DoorController : MonoBehaviour
     {
-        anim = GetComponent<Animator>();
-    }
+        public static event Action<bool> OnOpenedOrLocked;
+        private bool _isOpen;
+        public Animator animator;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
+        void OnCollisionEnter(Collision collision)
         {
-            InteractOM.OnInteract += "OpenClose";
-
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("DoorController: Player collided with door.");
+                GameEventSystem.Invoke();
+            }
         }
-    }
-    private void OpenClose()
-    {
-        if (!isOpen)
+
+        public void OpenDoor()
         {
-            anim.Play("PortaAbrindo");
+            if (!_isOpen)
+            {
+                animator.Play("PortaAbrindo");
+                _isOpen = true;
+            }
+            else
+            {
+                animator.Play("PortaFechando");
+                _isOpen = false;
+            }
+            
+            //animator.Play("Padrao");
         }
     }
 }
