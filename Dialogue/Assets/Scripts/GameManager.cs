@@ -79,13 +79,28 @@ public class GameManager : MonoBehaviour
     public void GoToMenu()
     {
         SetState(GameState.MenuPrincipal);
+
+        // Remove GUI se estiver carregada
+        if (SceneManager.GetSceneByName("GUI").isLoaded)
+        {
+            SceneManager.UnloadSceneAsync("GUI");
+        }
+
         LoadScene("MainMenu");
     }
 
     public void StartGame()
     {
         SetState(GameState.Gameplay);
-        LoadScene("SampleScene");
+
+        // Carrega gameplay
+        SceneManager.LoadScene("SampleScene");
+
+        // Carrega GUI junto
+        if (!SceneManager.GetSceneByName("GUI").isLoaded)
+        {
+            SceneManager.LoadScene("GUI", LoadSceneMode.Additive);
+        }
     }
 
     public void QuitGame()
