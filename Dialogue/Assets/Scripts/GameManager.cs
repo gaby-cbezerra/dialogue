@@ -89,18 +89,17 @@ public class GameManager : MonoBehaviour
         LoadScene("MainMenu");
     }
 
-    public void StartGame()
+     public void StartGame()
     {
         SetState(GameState.Gameplay);
 
         // Carrega gameplay
-        SceneManager.LoadScene("SampleScene");
+        Debug.Log("Carregando gameplay...");
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
 
-        // Carrega GUI junto
-        if (!SceneManager.GetSceneByName("GUI").isLoaded)
-        {
-            SceneManager.LoadScene("GUI", LoadSceneMode.Additive);
-        }
+        // Carrega GUI por cima
+        Debug.Log("Carregando GUI...");
+        SceneManager.LoadScene("GUI", LoadSceneMode.Additive);
     }
 
     public void QuitGame()
