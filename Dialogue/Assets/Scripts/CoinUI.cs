@@ -5,8 +5,6 @@ public class CoinUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI coinText;
 
-    private int currentCoins = 0;
-
     private void OnEnable()
     {
         PlayerObserverManager.OnCoinCollected += UpdateCoins;
@@ -17,12 +15,8 @@ public class CoinUI : MonoBehaviour
         PlayerObserverManager.OnCoinCollected -= UpdateCoins;
     }
 
-    private void UpdateCoins(int amount)
+    private void UpdateCoins(int totalCoins)
     {
-        currentCoins += amount;
-        
-        Debug.Log("Moeda recebida: " + currentCoins);
-        
-        coinText.text = "Coins: " + currentCoins;
+        coinText.text = "Coins: " + totalCoins;
     }
 }
