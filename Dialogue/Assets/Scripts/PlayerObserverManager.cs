@@ -2,17 +2,12 @@ using System;
 
 public static class PlayerObserverManager
 {
-    // Valor atual de moedas
-    private static int currentCoins = 0;
-
-    // Evento
+    // Evento da UI
     public static Action<int> OnCoinCollected;
 
-    // Método chamado ao coletar moeda
-    public static void CoinCollected(int amount)
+    // Apenas comunica o valor atual
+    public static void UpdateCoins(int currentCoins)
     {
-        currentCoins += amount;
-
         OnCoinCollected?.Invoke(currentCoins);
     }
 }

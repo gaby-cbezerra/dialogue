@@ -15,8 +15,8 @@ public class CoinUI : MonoBehaviour
         PlayerObserverManager.OnCoinCollected -= UpdateCoins;
     }
 
-    private void UpdateCoins(int totalCoins)
+    private void UpdateCoins(int currentCoins)
     {
-        coinText.text = "Coins: " + totalCoins;
+        coinText.text = "Coins: " + currentCoins;
     }
 }

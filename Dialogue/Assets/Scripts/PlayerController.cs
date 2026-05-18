@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Rigidbody to apply forces to. If left empty, GetComponent<Rigidbody>() will be used.")]
     [SerializeField] private Rigidbody rb;
+    [Header("Coins")]
+    [SerializeField] private int currentCoins = 0;
 
     // Current movement input (-1..1 for X and Y)
     private Vector2 moveInput = Vector2.zero;
@@ -88,6 +90,16 @@ public class PlayerController : MonoBehaviour
     public void SetMove(Vector2 input)
     {
         moveInput = input;
+    }
+    
+    public void AddCoin(int amount)
+    {
+        currentCoins += amount;
+
+        // Notifica a UI
+        PlayerObserverManager.UpdateCoins(currentCoins);
+
+        Debug.Log("Moedas: " + currentCoins);
     }
 }
 
