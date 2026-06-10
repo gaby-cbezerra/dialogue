@@ -37,12 +37,16 @@ public class PlayerController : MonoBehaviour
 
         gameInput.Gameplay.Move.performed += OnMovePerformed;
         gameInput.Gameplay.Move.canceled += OnMovePerformed;
+        
+        gameInput.Gameplay.Interact.performed += OnInteract;
     }
 
     private void OnDisable()
     {
         gameInput.Gameplay.Move.performed -= OnMovePerformed;
         gameInput.Gameplay.Move.canceled -= OnMovePerformed;
+        
+        gameInput.Gameplay.Interact.performed -= OnInteract;
 
         gameInput.Gameplay.Disable();
     }
@@ -97,5 +101,10 @@ public class PlayerController : MonoBehaviour
         PlayerObserverManager.UpdateCoins(currentCoins);
 
         Debug.Log("Moedas: " + currentCoins);
+    }
+    
+    private void OnInteract(InputAction.CallbackContext ctx)
+    {
+        InteractOM.Interact();
     }
 }
