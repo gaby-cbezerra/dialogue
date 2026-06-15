@@ -41,5 +41,9 @@ public class DialogueNPC : MonoBehaviour
     private void ShowDialogue()
     {
         Debug.Log(NPCName+": "+DialogueLines[0]);
+        DialogueOM.SubmitName(NPCName);
+        DialogueOM.SubmitImage(NPCImage);
+        DialogueOM.SubmitDialogue(DialogueLines[0]);
+        DialogueOM.StartDialogue();
     }
 }

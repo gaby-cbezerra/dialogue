@@ -1961,7 +1961,7 @@ GameObject:
   - component: {fileID: 1144000319}
   - component: {fileID: 1144000318}
   - component: {fileID: 1144000317}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DialogueNPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
