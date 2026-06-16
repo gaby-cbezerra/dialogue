@@ -96,9 +96,14 @@ public class CharacterSelectManager : MonoBehaviour
 
         if (p1Ready && p2Ready)
         {
-            GameManager.Instance.StartMatch();
+            SelectedBalls.Player1Ball = balls[p1Index];
+            SelectedBalls.Player2Ball = balls[p2Index];
+            
+            Debug.Log("P1 escolheu: " + SelectedBalls.Player1Ball.ballName);
+            Debug.Log("P2 escolheu: " + SelectedBalls.Player2Ball.ballName);
 
-            // Aqui depois vamos carregar a Gameplay
+
+            GameManager.Instance.StartMatch();
         }
     }
 

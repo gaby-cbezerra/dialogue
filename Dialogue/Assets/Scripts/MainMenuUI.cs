@@ -4,7 +4,7 @@ public class MainMenuUI : MonoBehaviour
 {
     public void OnStartButton()
     {
-        GameManager.Instance.StartGame();
+        GameManager.Instance.GoToCharacterSelect();
     }
 
     public void OnQuitButton()

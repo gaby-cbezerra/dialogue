@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private GameInput gameInput;
+    
+    [SerializeField] private bool isPlayer1;
 
     [Tooltip("Force multiplier applied when moving (higher = stronger acceleration)")]
     [SerializeField] private float speed = 300f;
@@ -29,6 +31,15 @@ public class PlayerController : MonoBehaviour
             rb = GetComponent<Rigidbody>();
 
         gameInput = new GameInput();
+        
+        BallData selectedData;
+
+        if (isPlayer1)
+            selectedData = SelectedBalls.Player1Ball;
+        else
+            selectedData = SelectedBalls.Player2Ball;
+
+        ApplyBallData(selectedData);
     }
 
     private void OnEnable()
@@ -106,5 +117,23 @@ public class PlayerController : MonoBehaviour
     private void OnInteract(InputAction.CallbackContext ctx)
     {
         InteractOM.Interact();
+    }
+    
+    private void ApplyBallData(BallData data)
+    {
+        if (data == null)
+            return;
+
+        speed = data.speed;
+
+        transform.localScale = Vector3.one * data.size;
+
+        if (rb != null)
+            rb.mass = data.weight;
+
+        MeshRenderer renderer = GetComponent<MeshRenderer>();
+
+        if (renderer != null && data.material != null)
+            renderer.material = data.material;
     }
 }

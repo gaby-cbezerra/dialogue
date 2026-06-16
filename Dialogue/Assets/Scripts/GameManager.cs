@@ -53,10 +53,11 @@ public class GameManager : MonoBehaviour
     // =============================
     public void LoadScene(string sceneName)
     {
-        // Controle de permissão por estado
         if (CurrentState == GameState.Iniciando ||
             CurrentState == GameState.MenuPrincipal ||
-            CurrentState == GameState.Gameplay)
+            CurrentState == GameState.CharacterSelect ||
+            CurrentState == GameState.Gameplay ||
+            CurrentState == GameState.Victory)
         {
             SceneManager.LoadScene(sceneName);
         }
@@ -65,7 +66,6 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("Mudança de cena não permitida no estado atual.");
         }
     }
-
     // =============================
     // INPUT CONTROL
     // =============================
