@@ -4,6 +4,8 @@ using UnityEngine;
 public class BallData : ScriptableObject
 {
     public string ballName;
+    
+    public Sprite previewSprite;
 
     public Material material;
 

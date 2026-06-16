@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d64a50bd0b8545499eb4bfe4b8b0aac, type: 3}
   m_Name: Ball_Fast
   m_EditorClassIdentifier: Assembly-CSharp::BallData
-  ballName: 
+  ballName: Greennie
+  previewSprite: {fileID: 21300000, guid: acab1d70546ea05478ff5971a98ec4b3, type: 3}
   material: {fileID: 2100000, guid: 37c2765c4f159734e9318efbc8c30788, type: 2}
   speed: 9
   pushPower: 4

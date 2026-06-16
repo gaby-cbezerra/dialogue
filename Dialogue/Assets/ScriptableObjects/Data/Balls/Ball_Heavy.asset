@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d64a50bd0b8545499eb4bfe4b8b0aac, type: 3}
   m_Name: Ball_Heavy
   m_EditorClassIdentifier: Assembly-CSharp::BallData
-  ballName: 
+  ballName: Purply
+  previewSprite: {fileID: 21300000, guid: b32cf43523970254d82cc1222d02ef28, type: 3}
   material: {fileID: 2100000, guid: 9ab3e5ddaaa2e134193cc4d1eea58952, type: 2}
   speed: 4
   pushPower: 8
