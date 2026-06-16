@@ -96,7 +96,7 @@ public class CharacterSelectManager : MonoBehaviour
 
         if (p1Ready && p2Ready)
         {
-            Debug.Log("Começar partida!");
+            GameManager.Instance.StartMatch();
 
             // Aqui depois vamos carregar a Gameplay
         }

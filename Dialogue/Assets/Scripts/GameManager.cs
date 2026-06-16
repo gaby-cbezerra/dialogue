@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
     {
         Iniciando,
         MenuPrincipal,
-        Gameplay
+        CharacterSelect,
+        Gameplay,
+        Victory
     }
 
     public GameState CurrentState;
@@ -88,17 +90,20 @@ public class GameManager : MonoBehaviour
 
         LoadScene("MainMenu");
     }
+    
+    public void GoToCharacterSelect()
+    {
+        SetState(GameState.CharacterSelect);
 
-     public void StartGame()
+        LoadScene("CharacterSelect");
+    }
+
+    public void StartMatch()
     {
         SetState(GameState.Gameplay);
 
-        // Carrega gameplay
-        Debug.Log("Carregando gameplay...");
         SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
 
-        // Carrega GUI por cima
-        Debug.Log("Carregando GUI...");
         SceneManager.LoadScene("GUI", LoadSceneMode.Additive);
     }
 
@@ -106,5 +111,17 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Saindo do jogo...");
         Application.Quit();
+    }
+    
+    public void GoToVictory()
+    {
+        SetState(GameState.Victory);
+
+        if (SceneManager.GetSceneByName("GUI").isLoaded)
+        {
+            SceneManager.UnloadSceneAsync("GUI");
+        }
+
+        LoadScene("Victory");
     }
 }
