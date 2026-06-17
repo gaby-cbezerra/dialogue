@@ -102,7 +102,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""InteractP1"",
                     ""type"": ""Button"",
                     ""id"": ""3ab5cb93-ab35-4226-bc9a-12247342ed20"",
                     ""expectedControlType"": """",
@@ -111,9 +111,27 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""InteractP2"",
+                    ""type"": ""Button"",
+                    ""id"": ""d36e647b-522f-41aa-81f8-f732ba9f1b90"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveP1"",
                     ""type"": ""Value"",
                     ""id"": ""7a7ae571-3c28-4fe9-882d-89262c7cefb5"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MoveP2"",
+                    ""type"": ""Value"",
+                    ""id"": ""824e170b-6cbe-4334-ac2d-b3f84d98ecbd"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -150,7 +168,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";TecladoMouse"",
-                    ""action"": ""Interact"",
+                    ""action"": ""InteractP1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -161,7 +179,29 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Interact"",
+                    ""action"": ""InteractP1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2da10e52-42dc-4360-9794-f83530a95002"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";TecladoMouse"",
+                    ""action"": ""InteractP2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b7bb524-d859-47a7-bba3-bf7110c8afc6"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""InteractP2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -172,7 +212,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveP1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -183,7 +223,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveP1"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -194,7 +234,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";TecladoMouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveP1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -205,7 +245,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";TecladoMouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveP1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -216,7 +256,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";TecladoMouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveP1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -227,62 +267,73 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveP1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Setas"",
-                    ""id"": ""0013eca5-b3f7-40be-bdb9-9b4cf68be2d0"",
+                    ""name"": """",
+                    ""id"": ""55374192-a125-42b5-9028-cef11a75003e"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveP2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""feada223-9e3a-4ee3-a8cd-b7ac7975b4a0"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveP2"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""2339c29c-0982-4481-88fe-26752da756ac"",
+                    ""id"": ""44644af5-8ab5-4966-9209-5e9777272633"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";TecladoMouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveP2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""9f0c5f61-7278-4606-8a85-fcb818cf6ae4"",
+                    ""id"": ""c77a8c73-28e1-49f7-81c5-79ffe687360a"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";TecladoMouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveP2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""b414718a-06ea-4b74-9f35-93a7b8b54193"",
+                    ""id"": ""2e3eea6f-bbd9-4dc7-aea5-d20e4a6587fe"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";TecladoMouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveP2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""d22bffcc-9c05-4334-878d-4d3900f8f20d"",
+                    ""id"": ""44af5ae5-9ee9-47ea-afb4-5a3078f49a88"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";TecladoMouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveP2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -322,8 +373,10 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
-        m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
-        m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
+        m_Gameplay_InteractP1 = m_Gameplay.FindAction("InteractP1", throwIfNotFound: true);
+        m_Gameplay_InteractP2 = m_Gameplay.FindAction("InteractP2", throwIfNotFound: true);
+        m_Gameplay_MoveP1 = m_Gameplay.FindAction("MoveP1", throwIfNotFound: true);
+        m_Gameplay_MoveP2 = m_Gameplay.FindAction("MoveP2", throwIfNotFound: true);
     }
 
     ~@GameInput()
@@ -405,8 +458,10 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Jump;
-    private readonly InputAction m_Gameplay_Interact;
-    private readonly InputAction m_Gameplay_Move;
+    private readonly InputAction m_Gameplay_InteractP1;
+    private readonly InputAction m_Gameplay_InteractP2;
+    private readonly InputAction m_Gameplay_MoveP1;
+    private readonly InputAction m_Gameplay_MoveP2;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -423,13 +478,21 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/Interact".
+        /// Provides access to the underlying input action "Gameplay/InteractP1".
         /// </summary>
-        public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
+        public InputAction @InteractP1 => m_Wrapper.m_Gameplay_InteractP1;
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/Move".
+        /// Provides access to the underlying input action "Gameplay/InteractP2".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_Gameplay_Move;
+        public InputAction @InteractP2 => m_Wrapper.m_Gameplay_InteractP2;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/MoveP1".
+        /// </summary>
+        public InputAction @MoveP1 => m_Wrapper.m_Gameplay_MoveP1;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/MoveP2".
+        /// </summary>
+        public InputAction @MoveP2 => m_Wrapper.m_Gameplay_MoveP2;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -459,12 +522,18 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
+            @InteractP1.started += instance.OnInteractP1;
+            @InteractP1.performed += instance.OnInteractP1;
+            @InteractP1.canceled += instance.OnInteractP1;
+            @InteractP2.started += instance.OnInteractP2;
+            @InteractP2.performed += instance.OnInteractP2;
+            @InteractP2.canceled += instance.OnInteractP2;
+            @MoveP1.started += instance.OnMoveP1;
+            @MoveP1.performed += instance.OnMoveP1;
+            @MoveP1.canceled += instance.OnMoveP1;
+            @MoveP2.started += instance.OnMoveP2;
+            @MoveP2.performed += instance.OnMoveP2;
+            @MoveP2.canceled += instance.OnMoveP2;
         }
 
         /// <summary>
@@ -479,12 +548,18 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
+            @InteractP1.started -= instance.OnInteractP1;
+            @InteractP1.performed -= instance.OnInteractP1;
+            @InteractP1.canceled -= instance.OnInteractP1;
+            @InteractP2.started -= instance.OnInteractP2;
+            @InteractP2.performed -= instance.OnInteractP2;
+            @InteractP2.canceled -= instance.OnInteractP2;
+            @MoveP1.started -= instance.OnMoveP1;
+            @MoveP1.performed -= instance.OnMoveP1;
+            @MoveP1.canceled -= instance.OnMoveP1;
+            @MoveP2.started -= instance.OnMoveP2;
+            @MoveP2.performed -= instance.OnMoveP2;
+            @MoveP2.canceled -= instance.OnMoveP2;
         }
 
         /// <summary>
@@ -559,18 +634,32 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "InteractP1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnInteract(InputAction.CallbackContext context);
+        void OnInteractP1(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "InteractP2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMove(InputAction.CallbackContext context);
+        void OnInteractP2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveP1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveP1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveP2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveP2(InputAction.CallbackContext context);
     }
 }

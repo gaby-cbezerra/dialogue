@@ -16,7 +16,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interact",
+                    "name": "InteractP1",
                     "type": "Button",
                     "id": "3ab5cb93-ab35-4226-bc9a-12247342ed20",
                     "expectedControlType": "",
@@ -25,9 +25,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Move",
+                    "name": "InteractP2",
+                    "type": "Button",
+                    "id": "d36e647b-522f-41aa-81f8-f732ba9f1b90",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveP1",
                     "type": "Value",
                     "id": "7a7ae571-3c28-4fe9-882d-89262c7cefb5",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MoveP2",
+                    "type": "Value",
+                    "id": "824e170b-6cbe-4334-ac2d-b3f84d98ecbd",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -64,7 +82,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";TecladoMouse",
-                    "action": "Interact",
+                    "action": "InteractP1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -75,7 +93,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Interact",
+                    "action": "InteractP1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2da10e52-42dc-4360-9794-f83530a95002",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";TecladoMouse",
+                    "action": "InteractP2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b7bb524-d859-47a7-bba3-bf7110c8afc6",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "InteractP2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -86,7 +126,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Move",
+                    "action": "MoveP1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -97,7 +137,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "MoveP1",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -108,7 +148,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";TecladoMouse",
-                    "action": "Move",
+                    "action": "MoveP1",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -119,7 +159,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";TecladoMouse",
-                    "action": "Move",
+                    "action": "MoveP1",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -130,7 +170,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";TecladoMouse",
-                    "action": "Move",
+                    "action": "MoveP1",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -141,62 +181,73 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "MoveP1",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Setas",
-                    "id": "0013eca5-b3f7-40be-bdb9-9b4cf68be2d0",
+                    "name": "",
+                    "id": "55374192-a125-42b5-9028-cef11a75003e",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "MoveP2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "feada223-9e3a-4ee3-a8cd-b7ac7975b4a0",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "MoveP2",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "up",
-                    "id": "2339c29c-0982-4481-88fe-26752da756ac",
+                    "id": "44644af5-8ab5-4966-9209-5e9777272633",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";TecladoMouse",
-                    "action": "Move",
+                    "action": "MoveP2",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "9f0c5f61-7278-4606-8a85-fcb818cf6ae4",
+                    "id": "c77a8c73-28e1-49f7-81c5-79ffe687360a",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";TecladoMouse",
-                    "action": "Move",
+                    "action": "MoveP2",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "b414718a-06ea-4b74-9f35-93a7b8b54193",
+                    "id": "2e3eea6f-bbd9-4dc7-aea5-d20e4a6587fe",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";TecladoMouse",
-                    "action": "Move",
+                    "action": "MoveP2",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "d22bffcc-9c05-4334-878d-4d3900f8f20d",
+                    "id": "44af5ae5-9ee9-47ea-afb4-5a3078f49a88",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";TecladoMouse",
-                    "action": "Move",
+                    "action": "MoveP2",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

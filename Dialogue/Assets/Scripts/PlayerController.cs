@@ -45,35 +45,62 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         gameInput.Gameplay.Enable();
+        Debug.Log(gameObject.name + " habilitou inputs");
 
-        gameInput.Gameplay.Move.performed += OnMovePerformed;
-        gameInput.Gameplay.Move.canceled += OnMovePerformed;
-        
-        gameInput.Gameplay.Interact.performed += OnInteract;
+        if (isPlayer1)
+        {
+            gameInput.Gameplay.MoveP1.performed += OnMovePerformed;
+            gameInput.Gameplay.MoveP1.canceled += OnMovePerformed;
+
+            gameInput.Gameplay.InteractP1.performed += OnInteract;
+        }
+        else
+        {
+            gameInput.Gameplay.MoveP2.performed += OnMovePerformed;
+            gameInput.Gameplay.MoveP2.canceled += OnMovePerformed;
+
+            gameInput.Gameplay.InteractP2.performed += OnInteract;
+        }
     }
 
     private void OnDisable()
     {
-        gameInput.Gameplay.Move.performed -= OnMovePerformed;
-        gameInput.Gameplay.Move.canceled -= OnMovePerformed;
-        
-        gameInput.Gameplay.Interact.performed -= OnInteract;
+        if (isPlayer1)
+        {
+            gameInput.Gameplay.MoveP1.performed -= OnMovePerformed;
+            gameInput.Gameplay.MoveP1.canceled -= OnMovePerformed;
 
+            gameInput.Gameplay.InteractP1.performed -= OnInteract;
+        }
+        else
+        {
+            gameInput.Gameplay.MoveP2.performed -= OnMovePerformed;
+            gameInput.Gameplay.MoveP2.canceled -= OnMovePerformed;
+
+            gameInput.Gameplay.InteractP2.performed -= OnInteract;
+        }
+        
         gameInput.Gameplay.Disable();
     }
 
     private void OnMovePerformed(InputAction.CallbackContext ctx)
     {
         moveInput = ctx.ReadValue<Vector2>();
+        Debug.Log(gameObject.name + " input: " + moveInput);
     }
 
     private void FixedUpdate()
     {
+       
         if (rb == null) return;
-
+        
+        Debug.Log(gameObject.name + " MoveInput = " + moveInput);
+        
         Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y);
 
         rb.AddForce(move * speed * Time.fixedDeltaTime, ForceMode.Force);
+        
+        Debug.Log(gameObject.name + " Velocidade = " + rb.linearVelocity);
 
         Vector3 torque =
             new Vector3(move.z, 0f, -move.x) *
@@ -98,6 +125,8 @@ public class PlayerController : MonoBehaviour
                     clamped.z
                 );
         }
+        
+        Debug.Log(gameObject.name + " vel: " + rb.linearVelocity);
     }
 
     public void SetMove(Vector2 input)
