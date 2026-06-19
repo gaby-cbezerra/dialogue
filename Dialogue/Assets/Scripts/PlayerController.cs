@@ -4,23 +4,34 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private GameInput gameInput;
-    
+
     [SerializeField] private bool isPlayer1;
 
-    [Tooltip("Force multiplier applied when moving (higher = stronger acceleration)")]
-    [SerializeField] private float speed = 300f;
+    [SerializeField] private Rigidbody enemyRb;
 
-    [Tooltip("Maximum horizontal speed (units/sec)")]
-    [SerializeField] private float maxSpeed = 6f;
+    [SerializeField] private float pushForce = 500f;
 
-    [Tooltip("Torque strength applied to make the ball rotate (higher = faster spin)")]
-    [SerializeField] private float torqueStrength = 10f;
+    [SerializeField] private float maxPushDistance = 5f;
 
-    [Tooltip("Rigidbody to apply forces to. If left empty, GetComponent<Rigidbody>() will be used.")]
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] private float forceCooldown = 5f;
 
-    [Header("Coins")]
-    [SerializeField] private int currentCoins = 0;
+    private float currentCooldown = 5f;
+
+    private bool canPush = true;
+
+    [Tooltip("Force multiplier applied when moving (higher = stronger acceleration)")] [SerializeField]
+    private float speed = 300f;
+
+    [Tooltip("Maximum horizontal speed (units/sec)")] [SerializeField]
+    private float maxSpeed = 6f;
+
+    [Tooltip("Torque strength applied to make the ball rotate (higher = faster spin)")] [SerializeField]
+    private float torqueStrength = 10f;
+
+    [Tooltip("Rigidbody to apply forces to. If left empty, GetComponent<Rigidbody>() will be used.")] [SerializeField]
+    private Rigidbody rb;
+
+    [Header("Coins")] [SerializeField] private int currentCoins = 0;
 
     // Current movement input (-1..1 for X and Y)
     private Vector2 moveInput = Vector2.zero;
@@ -32,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
         gameInput = new GameInput();
 
+        currentCooldown = forceCooldown;
 
         BallData selectedData;
 
@@ -52,11 +64,15 @@ public class PlayerController : MonoBehaviour
         {
             gameInput.Gameplay.MoveP1.performed += OnMovePerformed;
             gameInput.Gameplay.MoveP1.canceled += OnMoveCanceled;
+
+            gameInput.Gameplay.InteractP1.performed += OnPush;
         }
         else
         {
             gameInput.Gameplay.MoveP2.performed += OnMovePerformed;
             gameInput.Gameplay.MoveP2.canceled += OnMoveCanceled;
+
+            gameInput.Gameplay.InteractP2.performed += OnPush;
         }
     }
 
@@ -67,11 +83,15 @@ public class PlayerController : MonoBehaviour
         {
             gameInput.Gameplay.MoveP1.performed -= OnMovePerformed;
             gameInput.Gameplay.MoveP1.canceled -= OnMoveCanceled;
+
+            gameInput.Gameplay.InteractP1.performed -= OnPush;
         }
         else
         {
             gameInput.Gameplay.MoveP2.performed -= OnMovePerformed;
             gameInput.Gameplay.MoveP2.canceled -= OnMoveCanceled;
+
+            gameInput.Gameplay.InteractP2.performed -= OnPush;
         }
 
         gameInput.Gameplay.Disable();
@@ -81,10 +101,39 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = ctx.ReadValue<Vector2>();
     }
-    
+
     private void OnMoveCanceled(InputAction.CallbackContext ctx)
     {
         moveInput = Vector2.zero;
+    }
+
+    private void Update()
+    {
+        if (!canPush)
+        {
+            currentCooldown += Time.deltaTime;
+
+            float progress = currentCooldown / forceCooldown;
+
+            if (ForceBarUI.Instance != null)
+            {
+                if(isPlayer1)
+                {
+                    ForceBarUI.Instance.UpdatePlayer1Bar(progress);
+                }
+                else
+                {
+                    ForceBarUI.Instance.UpdatePlayer2Bar(progress);
+                }
+            }
+
+
+            if (currentCooldown >= forceCooldown)
+            {
+                canPush = true;
+                currentCooldown = forceCooldown;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -94,11 +143,11 @@ public class PlayerController : MonoBehaviour
 
         Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y);
 
-       rb.AddForce(move * speed, ForceMode.Force);
+        rb.AddForce(move * speed, ForceMode.Force);
 
-       Vector3 torque =
-           new Vector3(move.z, 0f, -move.x) *
-           torqueStrength;
+        Vector3 torque =
+            new Vector3(move.z, 0f, -move.x) *
+            torqueStrength;
 
         rb.AddTorque(torque, ForceMode.Force);
 
@@ -133,7 +182,7 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("Moedas: " + currentCoins);
     }
-    
+
     private void ApplyBallData(BallData data)
     {
         if (data == null)
@@ -166,5 +215,50 @@ public class PlayerController : MonoBehaviour
         {
             renderer.material = Instantiate(data.material);
         }
+    }
+
+    private void OnPush(InputAction.CallbackContext ctx)
+    {
+        if (!canPush)
+            return;
+
+
+        if (enemyRb == null)
+            return;
+
+
+        Vector3 direction = enemyRb.position - rb.position;
+
+
+        float distance = direction.magnitude;
+
+
+        direction.Normalize();
+
+
+        float power =
+            Mathf.Clamp01(1 - distance / maxPushDistance);
+
+
+        enemyRb.AddForce(
+            direction * pushForce * power,
+            ForceMode.Impulse
+        );
+
+
+        canPush = false;
+
+        currentCooldown = 0;
+
+
+        if (ForceBarUI.Instance != null)
+            if(isPlayer1)
+            {
+                ForceBarUI.Instance.UpdatePlayer1Bar(0);
+            }
+            else
+            {
+                ForceBarUI.Instance.UpdatePlayer2Bar(0);
+            }
     }
 }

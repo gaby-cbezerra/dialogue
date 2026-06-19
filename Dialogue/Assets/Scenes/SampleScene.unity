@@ -2383,6 +2383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   isPlayer1: 0
+  enemyRb: {fileID: 2048065238}
+  pushForce: 500
+  maxPushDistance: 5
   speed: 300
   maxSpeed: 6
   torqueStrength: 10
@@ -2858,6 +2861,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   isPlayer1: 1
+  enemyRb: {fileID: 1373791184}
+  pushForce: 500
+  maxPushDistance: 5
   speed: 300
   maxSpeed: 6
   torqueStrength: 10
