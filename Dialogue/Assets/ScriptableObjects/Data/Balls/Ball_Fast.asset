@@ -15,7 +15,7 @@ MonoBehaviour:
   ballName: Greennie
   previewSprite: {fileID: 21300000, guid: acab1d70546ea05478ff5971a98ec4b3, type: 3}
   material: {fileID: 2100000, guid: 37c2765c4f159734e9318efbc8c30788, type: 2}
-  speed: 9
+  speed: 80
   pushPower: 4
   weight: 3
   size: 0.9

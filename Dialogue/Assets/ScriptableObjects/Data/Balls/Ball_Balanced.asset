@@ -15,7 +15,7 @@ MonoBehaviour:
   ballName: Aoi
   previewSprite: {fileID: 21300000, guid: db9def43798ca984baea328eac821985, type: 3}
   material: {fileID: 2100000, guid: 0dab12408be003d49bbf4f7aceab9c50, type: 2}
-  speed: 7
+  speed: 50
   pushPower: 7
   weight: 7
   size: 1

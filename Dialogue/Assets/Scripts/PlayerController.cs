@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour
             rb = GetComponent<Rigidbody>();
 
         gameInput = new GameInput();
-        
+
+
         BallData selectedData;
 
         if (isPlayer1)
@@ -39,73 +40,65 @@ public class PlayerController : MonoBehaviour
         else
             selectedData = SelectedBalls.Player2Ball;
 
+
         ApplyBallData(selectedData);
     }
 
     private void OnEnable()
     {
         gameInput.Gameplay.Enable();
-        Debug.Log(gameObject.name + " habilitou inputs");
 
         if (isPlayer1)
         {
             gameInput.Gameplay.MoveP1.performed += OnMovePerformed;
-            gameInput.Gameplay.MoveP1.canceled += OnMovePerformed;
-
-            gameInput.Gameplay.InteractP1.performed += OnInteract;
+            gameInput.Gameplay.MoveP1.canceled += OnMoveCanceled;
         }
         else
         {
             gameInput.Gameplay.MoveP2.performed += OnMovePerformed;
-            gameInput.Gameplay.MoveP2.canceled += OnMovePerformed;
-
-            gameInput.Gameplay.InteractP2.performed += OnInteract;
+            gameInput.Gameplay.MoveP2.canceled += OnMoveCanceled;
         }
     }
+
 
     private void OnDisable()
     {
         if (isPlayer1)
         {
             gameInput.Gameplay.MoveP1.performed -= OnMovePerformed;
-            gameInput.Gameplay.MoveP1.canceled -= OnMovePerformed;
-
-            gameInput.Gameplay.InteractP1.performed -= OnInteract;
+            gameInput.Gameplay.MoveP1.canceled -= OnMoveCanceled;
         }
         else
         {
             gameInput.Gameplay.MoveP2.performed -= OnMovePerformed;
-            gameInput.Gameplay.MoveP2.canceled -= OnMovePerformed;
-
-            gameInput.Gameplay.InteractP2.performed -= OnInteract;
+            gameInput.Gameplay.MoveP2.canceled -= OnMoveCanceled;
         }
-        
+
         gameInput.Gameplay.Disable();
     }
 
     private void OnMovePerformed(InputAction.CallbackContext ctx)
     {
         moveInput = ctx.ReadValue<Vector2>();
-        Debug.Log(gameObject.name + " input: " + moveInput);
+    }
+    
+    private void OnMoveCanceled(InputAction.CallbackContext ctx)
+    {
+        moveInput = Vector2.zero;
     }
 
     private void FixedUpdate()
     {
-       
+        Debug.Log("Speed atual: " + speed);
         if (rb == null) return;
-        
-        Debug.Log(gameObject.name + " MoveInput = " + moveInput);
-        
+
         Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y);
 
-        rb.AddForce(move * speed * Time.fixedDeltaTime, ForceMode.Force);
-        
-        Debug.Log(gameObject.name + " Velocidade = " + rb.linearVelocity);
+       rb.AddForce(move * speed, ForceMode.Force);
 
-        Vector3 torque =
-            new Vector3(move.z, 0f, -move.x) *
-            torqueStrength *
-            Time.fixedDeltaTime;
+       Vector3 torque =
+           new Vector3(move.z, 0f, -move.x) *
+           torqueStrength;
 
         rb.AddTorque(torque, ForceMode.Force);
 
@@ -125,8 +118,6 @@ public class PlayerController : MonoBehaviour
                     clamped.z
                 );
         }
-        
-        Debug.Log(gameObject.name + " vel: " + rb.linearVelocity);
     }
 
     public void SetMove(Vector2 input)
@@ -143,26 +134,37 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Moedas: " + currentCoins);
     }
     
-    private void OnInteract(InputAction.CallbackContext ctx)
-    {
-        InteractOM.Interact();
-    }
-    
     private void ApplyBallData(BallData data)
     {
         if (data == null)
+        {
+            Debug.Log("Sem BallData em " + gameObject.name);
             return;
+        }
 
+
+        Debug.Log(gameObject.name + " recebeu " + data.ballName);
+
+
+        // velocidade escolhida
         speed = data.speed;
 
+
+        // tamanho da bola
         transform.localScale = Vector3.one * data.size;
 
+
+        // peso
         if (rb != null)
             rb.mass = data.weight;
 
+
+        // cor/material
         MeshRenderer renderer = GetComponent<MeshRenderer>();
 
         if (renderer != null && data.material != null)
-            renderer.material = data.material;
+        {
+            renderer.material = Instantiate(data.material);
+        }
     }
 }
