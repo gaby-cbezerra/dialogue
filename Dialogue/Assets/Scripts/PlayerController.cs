@@ -31,7 +31,18 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Rigidbody to apply forces to. If left empty, GetComponent<Rigidbody>() will be used.")] [SerializeField]
     private Rigidbody rb;
 
-    [Header("Coins")] [SerializeField] private int currentCoins = 0;
+    [Header("Coins")]
+
+    [SerializeField]
+    private int currentCoins = 0;
+
+
+    [SerializeField]
+    private float coinPushBonus = 50f;
+
+
+    [SerializeField]
+    private float coinWeightBonus = 0.5f;
 
     // Current movement input (-1..1 for X and Y)
     private Vector2 moveInput = Vector2.zero;
@@ -178,9 +189,30 @@ public class PlayerController : MonoBehaviour
     {
         currentCoins += amount;
 
+
+        // ganha mais resistência
+        rb.mass += coinWeightBonus;
+
+
+        // ganha mais força de ataque
+        pushForce += coinPushBonus;
+
+
+        // fica mais lento
+        speed -= 10f;
+
+
+        if(speed < 50f)
+            speed = 50f;
+
+
+
         PlayerObserverManager.UpdateCoins(currentCoins);
 
-        Debug.Log("Moedas: " + currentCoins);
+
+        Debug.Log(
+            "Moedas: " + currentCoins
+        );
     }
 
     private void ApplyBallData(BallData data)

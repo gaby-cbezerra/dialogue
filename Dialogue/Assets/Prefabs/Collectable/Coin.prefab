@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7121908798501696417}
   - component: {fileID: 7672157342404449485}
   - component: {fileID: 7798692846368936654}
+  - component: {fileID: 8608098025296853199}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Coin
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 6.996, y: -0.52, z: 2.09}
-  m_LocalScale: {x: 0.5, y: 0.05514235, z: 0.5}
+  m_LocalScale: {x: 0.5, y: 0.05, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -127,3 +128,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3108e5136bbddb41a0b6d2a24be9434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coin
+--- !u!54 &8608098025296853199
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687554961342834108}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
