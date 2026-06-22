@@ -15,7 +15,7 @@ MonoBehaviour:
   ballName: Redu
   previewSprite: {fileID: 21300000, guid: cf774ebc2d3945f4d9da126e8af60d55, type: 3}
   material: {fileID: 2100000, guid: 00694535c15671749b32931cd0a4c404, type: 2}
-  speed: 6
+  speed: 60
   pushPower: 6
   weight: 6
   size: 1
