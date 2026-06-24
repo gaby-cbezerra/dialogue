@@ -30,19 +30,23 @@ public class CoinSpawner : MonoBehaviour
     {
         int index = Random.Range(0, spawnPoints.Length);
 
+        Vector3 spawnPosition = spawnPoints[index].position;
+
+        spawnPosition.y = 1f;
+
+
         GameObject coin = Instantiate(
             coinPrefab,
-            spawnPoints[index].position,
+            spawnPosition,
             Quaternion.identity
         );
 
 
-        coin.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        coin.transform.localScale = Vector3.one * 0.5f;
 
 
         Debug.Log(
-            "Coin criada em: " + coin.transform.position +
-            " escala: " + coin.transform.localScale
+            "Coin criada em: " + coin.transform.position
         );
     }
 }

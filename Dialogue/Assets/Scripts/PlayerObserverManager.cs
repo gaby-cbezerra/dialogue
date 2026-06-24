@@ -2,12 +2,22 @@ using System;
 
 public static class PlayerObserverManager
 {
-    // Evento da UI
-    public static Action<int> OnCoinCollected;
+    // Player 1
+    public static Action<int> OnPlayer1CoinsChanged;
 
-    // Apenas comunica o valor atual
-    public static void UpdateCoins(int currentCoins)
+    // Player 2
+    public static Action<int> OnPlayer2CoinsChanged;
+
+
+
+    public static void UpdatePlayer1Coins(int amount)
     {
-        OnCoinCollected?.Invoke(currentCoins);
+        OnPlayer1CoinsChanged?.Invoke(amount);
+    }
+
+
+    public static void UpdatePlayer2Coins(int amount)
+    {
+        OnPlayer2CoinsChanged?.Invoke(amount);
     }
 }

@@ -207,8 +207,14 @@ public class PlayerController : MonoBehaviour
 
 
 
-        PlayerObserverManager.UpdateCoins(currentCoins);
-
+        if(isPlayer1)
+        {
+            PlayerObserverManager.UpdatePlayer1Coins(currentCoins);
+        }
+        else
+        {
+            PlayerObserverManager.UpdatePlayer2Coins(currentCoins);
+        }
 
         Debug.Log(
             "Moedas: " + currentCoins
