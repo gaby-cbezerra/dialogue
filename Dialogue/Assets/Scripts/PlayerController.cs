@@ -299,4 +299,8 @@ public class PlayerController : MonoBehaviour
                 ForceBarUI.Instance.UpdatePlayer2Bar(0);
             }
     }
+    public bool IsPlayer1()
+    {
+        return isPlayer1;
+    }
 }

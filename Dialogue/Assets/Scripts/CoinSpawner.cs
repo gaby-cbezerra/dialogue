@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinSpawner : MonoBehaviour
@@ -5,6 +6,8 @@ public class CoinSpawner : MonoBehaviour
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private float spawnTime = 5f;
+    
+    private List<GameObject> spawnedCoins = new List<GameObject>();
 
 
     private void Awake()
@@ -30,23 +33,21 @@ public class CoinSpawner : MonoBehaviour
     {
         int index = Random.Range(0, spawnPoints.Length);
 
-        Vector3 spawnPosition = spawnPoints[index].position;
 
-        spawnPosition.y = 1f;
+        Vector3 pos = spawnPoints[index].position;
 
 
-        GameObject coin = Instantiate(
+        // altura do chão
+        pos.y = -0.8f;
+
+
+        Instantiate(
             coinPrefab,
-            spawnPosition,
+            pos,
             Quaternion.identity
         );
 
 
-        coin.transform.localScale = Vector3.one * 0.5f;
-
-
-        Debug.Log(
-            "Coin criada em: " + coin.transform.position
-        );
+        Debug.Log("Moeda criada em: " + pos);
     }
 }
