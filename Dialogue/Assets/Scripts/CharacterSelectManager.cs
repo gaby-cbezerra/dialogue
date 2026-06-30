@@ -102,7 +102,20 @@ public class CharacterSelectManager : MonoBehaviour
             Debug.Log("P1 escolheu: " + SelectedBalls.Player1Ball.ballName);
             Debug.Log("P2 escolheu: " + SelectedBalls.Player2Ball.ballName);
 
+            PlayerPrefs.SetString(
+                "Player1Ball",
+                balls[p1Index].ballName
+            );
 
+
+            PlayerPrefs.SetString(
+                "Player2Ball",
+                balls[p2Index].ballName
+            );
+
+
+            PlayerPrefs.Save();
+            
             GameManager.Instance.StartMatch();
         }
     }
